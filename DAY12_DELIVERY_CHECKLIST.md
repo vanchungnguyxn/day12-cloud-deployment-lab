@@ -1,218 +1,376 @@
-#  Delivery Checklist — Day 12 Lab Submission
+# Delivery Checklist — Day 12 Lab Submission
 
-> **Student Name:** _________________________  
-> **Student ID:** _________________________  
-> **Date:** _________________________
+> **Student Name:** Nguyen Van Chung
+> **Student ID:** 2A202600647
+> **Date:** 12/06/2026
 
 ---
 
-##  Submission Requirements
+## Submission Requirements
 
 Submit a **GitHub repository** containing:
 
-### 1. Mission Answers (40 points)
+---
 
-Create a file `MISSION_ANSWERS.md` with your answers to all exercises:
+## 1. Mission Answers — 40 points
 
-```markdown
-# Day 12 Lab - Mission Answers
+* [x] Created `MISSION_ANSWERS.md`
+* [x] Answered Part 1: Localhost vs Production
+* [x] Answered Exercise 1.1: Anti-patterns found
+* [x] Answered Exercise 1.3: Comparison table
+* [x] Answered Part 2: Docker
+* [x] Answered Exercise 2.1: Dockerfile questions
+* [x] Answered Exercise 2.3: Image size comparison
+* [x] Answered Part 3: Cloud Deployment
+* [x] Included Railway deployment attempt
+* [x] Included Render deployment result
+* [x] Included public Render URL
+* [x] Answered Part 4: API Security
+* [x] Included API key test results
+* [x] Included JWT authentication test results
+* [x] Included rate limit test results
+* [x] Explained cost guard
+* [x] Answered Part 5: Scaling & Reliability
+* [x] Included health check result
+* [x] Included readiness/stateless explanation
+* [x] Included Redis-based stateless scaling test result
 
-## Part 1: Localhost vs Production
+### Mission Answers File
 
-### Exercise 1.1: Anti-patterns found
-1. [Your answer]
-2. [Your answer]
-...
-
-### Exercise 1.3: Comparison table
-| Feature | Develop | Production | Why Important? |
-|---------|---------|------------|----------------|
-| Config  | ...     | ...        | ...            |
-...
-
-## Part 2: Docker
-
-### Exercise 2.1: Dockerfile questions
-1. Base image: [Your answer]
-2. Working directory: [Your answer]
-...
-
-### Exercise 2.3: Image size comparison
-- Develop: [X] MB
-- Production: [Y] MB
-- Difference: [Z]%
-
-## Part 3: Cloud Deployment
-
-### Exercise 3.1: Railway deployment
-- URL: https://your-app.railway.app
-- Screenshot: [Link to screenshot in repo]
-
-## Part 4: API Security
-
-### Exercise 4.1-4.3: Test results
-[Paste your test outputs]
-
-### Exercise 4.4: Cost guard implementation
-[Explain your approach]
-
-## Part 5: Scaling & Reliability
-
-### Exercise 5.1-5.5: Implementation notes
-[Your explanations and test results]
+```text
+MISSION_ANSWERS.md
 ```
 
 ---
 
-### 2. Full Source Code - Lab 06 Complete (60 points)
+## 2. Full Source Code — Lab 06 Complete — 60 points
 
-Your final production-ready agent with all files:
+The final production-ready agent is included in:
 
+```text
+06-lab-complete/
 ```
-your-repo/
+
+The final app contains:
+
+```text
+06-lab-complete/
 ├── app/
-│   ├── main.py              # Main application
-│   ├── config.py            # Configuration
-│   ├── auth.py              # Authentication
-│   ├── rate_limiter.py      # Rate limiting
-│   └── cost_guard.py        # Cost protection
+│   ├── main.py
+│   ├── config.py
+│   ├── auth.py
+│   ├── rate_limiter.py
+│   └── cost_guard.py
 ├── utils/
-│   └── mock_llm.py          # Mock LLM (provided)
-├── Dockerfile               # Multi-stage build
-├── docker-compose.yml       # Full stack
-├── requirements.txt         # Dependencies
-├── .env.example             # Environment template
-├── .dockerignore            # Docker ignore
-├── railway.toml             # Railway config (or render.yaml)
-└── README.md                # Setup instructions
+│   └── mock_llm.py
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── .env.example
+├── .dockerignore
+├── railway.toml
+├── render.yaml
+├── README.md
+└── check_production_ready.py
 ```
 
-**Requirements:**
--  All code runs without errors
--  Multi-stage Dockerfile (image < 500 MB)
--  API key authentication
--  Rate limiting (10 req/min)
--  Cost guard ($10/month)
--  Health + readiness checks
--  Graceful shutdown
--  Stateless design (Redis)
--  No hardcoded secrets
+### Requirements
+
+* [x] All code runs without errors
+* [x] Multi-stage Dockerfile implemented
+* [x] Docker image is production optimized
+* [x] API key authentication implemented
+* [x] Rate limiting implemented
+* [x] Cost guard implemented
+* [x] Health check endpoint implemented
+* [x] Readiness endpoint implemented
+* [x] Graceful shutdown implemented
+* [x] Stateless design using Redis
+* [x] No hardcoded secrets in code
+* [x] `.env.local` is not committed
+* [x] Only `.env.example` is included
+
+### Production Readiness Result
+
+```text
+Result: 20/20 checks passed (100%)
+🎉 PRODUCTION READY! Deploy nào!
+```
 
 ---
 
-### 3. Service Domain Link
+## 3. Service Domain Link
 
-Create a file `DEPLOYMENT.md` with your deployed service information:
+Created:
 
-```markdown
-# Deployment Information
+```text
+DEPLOYMENT.md
+```
 
-## Public URL
-https://your-agent.railway.app
+### Public URL
 
-## Platform
-Railway / Render / Cloud Run
+```text
+https://day12-agent-chung.onrender.com
+```
 
-## Test Commands
+### Platform
+
+```text
+Render
+```
+
+### Cloud Deployment Status
+
+* [x] Railway attempted
+* [x] Railway blocked due to workspace restriction
+* [x] Render deployment completed successfully
+* [x] Public URL is accessible
+* [x] `/health` endpoint works on public URL
+* [x] `/ask` endpoint works on public URL
+* [x] Deployment screenshots included
+
+---
+
+## 4. Public URL Self-Test
 
 ### Health Check
+
 ```bash
-curl https://your-agent.railway.app/health
-# Expected: {"status": "ok"}
+curl https://day12-agent-chung.onrender.com/health
 ```
 
-### API Test (with authentication)
+Expected:
+
+```json
+{"status":"ok"}
+```
+
+Status:
+
+```text
+Passed
+```
+
+### Ask Endpoint
+
 ```bash
-curl -X POST https://your-agent.railway.app/ask \
-  -H "X-API-Key: YOUR_KEY" \
+curl -X POST https://day12-agent-chung.onrender.com/ask \
   -H "Content-Type: application/json" \
-  -d '{"user_id": "test", "question": "Hello"}'
+  -d '{"question":"Hello from Render cloud deployment"}'
 ```
 
-## Environment Variables Set
-- PORT
-- REDIS_URL
-- AGENT_API_KEY
-- LOG_LEVEL
+Expected:
 
-## Screenshots
-- [Deployment dashboard](screenshots/dashboard.png)
-- [Service running](screenshots/running.png)
-- [Test results](screenshots/test.png)
+```text
+The agent returns a valid answer.
 ```
 
-##  Pre-Submission Checklist
+Status:
 
-- [ ] Repository is public (or instructor has access)
-- [ ] `MISSION_ANSWERS.md` completed with all exercises
-- [ ] `DEPLOYMENT.md` has working public URL
-- [ ] All source code in `app/` directory
-- [ ] `README.md` has clear setup instructions
-- [ ] No `.env` file committed (only `.env.example`)
-- [ ] No hardcoded secrets in code
-- [ ] Public URL is accessible and working
-- [ ] Screenshots included in `screenshots/` folder
-- [ ] Repository has clear commit history
+```text
+Passed
+```
 
 ---
 
-##  Self-Test
+## 5. Final Local Production Self-Test
 
-Before submitting, verify your deployment:
+### Start Final App
 
 ```bash
-# 1. Health check
-curl https://your-app.railway.app/health
+cd 06-lab-complete
+docker compose up --build
+```
 
-# 2. Authentication required
-curl https://your-app.railway.app/ask
-# Should return 401
+Status:
 
-# 3. With API key works
-curl -H "X-API-Key: YOUR_KEY" https://your-app.railway.app/ask \
-  -X POST -d '{"user_id":"test","question":"Hello"}'
-# Should return 200
+```text
+Passed
+```
 
-# 4. Rate limiting
-for i in {1..15}; do 
-  curl -H "X-API-Key: YOUR_KEY" https://your-app.railway.app/ask \
-    -X POST -d '{"user_id":"test","question":"test"}'; 
-done
-# Should eventually return 429
+### Health Check
+
+```bash
+curl http://localhost:8000/health
+```
+
+Status:
+
+```text
+Passed
+```
+
+Actual result:
+
+```text
+status         : ok
+version        : 1.0.0
+environment    : staging
+checks         : @{llm=mock}
+```
+
+### Readiness Check
+
+```bash
+curl http://localhost:8000/ready
+```
+
+Status:
+
+```text
+Passed
+```
+
+Actual result:
+
+```text
+ready : True
+```
+
+### Authentication Required
+
+```bash
+curl -X POST http://localhost:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"question":"Hello"}'
+```
+
+Expected:
+
+```text
+401 Unauthorized
+```
+
+Status:
+
+```text
+Passed
+```
+
+Actual result:
+
+```json
+{
+  "detail": "Invalid or missing API key. Include header: X-API-Key: <key>"
+}
+```
+
+### Ask With API Key
+
+```bash
+curl -X POST http://localhost:8000/ask \
+  -H "X-API-Key: chung-day12-secret" \
+  -H "Content-Type: application/json" \
+  -d '{"question":"Hello final production app"}'
+```
+
+Expected:
+
+```text
+200 OK
+```
+
+Status:
+
+```text
+Passed
+```
+
+Actual result:
+
+```text
+question  : Hello final production app
+answer    : Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.
+model     : gpt-4o-mini
+```
+
+### Metrics Endpoint
+
+```bash
+curl http://localhost:8000/metrics \
+  -H "X-API-Key: chung-day12-secret"
+```
+
+Status:
+
+```text
+Passed
+```
+
+Actual result:
+
+```text
+uptime_seconds   : 74.2
+total_requests   : 0
+error_count      : 0
+daily_cost_usd   : 0
+daily_budget_usd : 5
+budget_used_pct  : 0
 ```
 
 ---
 
-##  Submission
+## 6. Screenshots
 
-**Submit your GitHub repository URL:**
+Screenshots are included in:
 
+```text
+screenshots/
 ```
-https://github.com/your-username/day12-agent-deployment
+
+### Screenshot List
+
+* [x] `part1-develop-ask.png`
+* [x] `part2-image-size.png`
+* [x] `part3-public-url-test.png`
+* [x] `part3-render-blueprint.png`
+* [x] `part3-render-logs-success.png`
+* [x] `part4-api-key.png`
+* [x] `part4-rate-limit.png`
+* [x] `part6-final-health-ready-ask.png`
+* [x] `part6-production-ready.png`
+
+### Recommended Extra Screenshot
+
+* [ ] `part5-stateless-redis.png`
+
+Note: Part 5 was tested successfully through terminal output. Adding a screenshot for Part 5 is recommended but not required if the test result is already documented in `MISSION_ANSWERS.md`.
+
+---
+
+## 7. Pre-Submission Checklist
+
+* [x] Repository is public or instructor has access
+* [x] `MISSION_ANSWERS.md` completed with all exercises
+* [x] `DEPLOYMENT.md` has working public URL
+* [x] Final source code is included in `06-lab-complete/`
+* [x] `README.md` exists
+* [x] No `.env` file committed
+* [x] No `.env.local` file committed
+* [x] Only `.env.example` is committed
+* [x] No hardcoded secrets in code
+* [x] Public URL is accessible and working
+* [x] Screenshots included in `screenshots/` folder
+* [x] Production readiness checker passed 20/20 checks
+
+---
+
+## 8. Repository URL
+
+```text
+https://github.com/vanchungnguyxn/day12-cloud-deployment-lab
 ```
 
-**Deadline:** 17/4/2026
+---
+
+## 9. Final Submission Status
+
+```text
+Ready for submission
+```
 
 ---
 
-##  Quick Tips
+## Final Note
 
-1.  Test your public URL from a different device
-2.  Make sure repository is public or instructor has access
-3.  Include screenshots of working deployment
-4.  Write clear commit messages
-5.  Test all commands in DEPLOYMENT.md work
-6.  No secrets in code or commit history
-
----
-
-##  Need Help?
-
-- Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- Review [CODE_LAB.md](CODE_LAB.md)
-- Ask in office hours
-- Post in discussion forum
-
----
-
-**Good luck! **
+The Day 12 lab requirements were completed successfully. The repository includes mission answers, deployment information, screenshots, and the final production-ready agent. The final app passed all production readiness checks with a score of 20/20.

@@ -1,6 +1,14 @@
 .venv/
+venv/
 __pycache__/
 *.pyc
+
 .env
 .env.local
+*.env.local
+
 .railway/
+.DS_Store
+
+fix_middleware.py
+fix_models.py
