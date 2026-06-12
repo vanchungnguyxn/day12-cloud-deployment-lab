@@ -40,7 +40,7 @@ async def ask_agent(request: Request):
     return {
         "question": question,
         "answer": ask(question),
-        "platform": "Railway",
+        "platform": "Render",
     }
 
 
@@ -53,7 +53,7 @@ def health():
     return {
         "status": "ok",
         "uptime_seconds": round(time.time() - START_TIME, 1),
-        "platform": "Railway",
+        "platform": "Render",
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
