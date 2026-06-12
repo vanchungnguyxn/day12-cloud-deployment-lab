@@ -645,3 +645,76 @@ PRODUCTION READY
 ```
 
 Therefore, the project is ready for submission.
+## Final Production Deployment
+
+### Public URL
+
+```text
+https://day12-cloud-deployment-lab.onrender.com
+```
+
+### Final App Folder
+
+```text
+06-lab-complete
+```
+
+### Platform Configuration
+
+```text
+Platform: Render
+Runtime: Docker
+Root Directory: 06-lab-complete
+Health Check Path: /health
+Redis: Render Key Value
+Environment: production
+```
+
+### Environment Variables
+
+```env
+ENVIRONMENT=production
+APP_NAME=day12-agent-chung-final
+APP_VERSION=1.0.0
+AGENT_API_KEY=***
+JWT_SECRET=***
+RATE_LIMIT_PER_MINUTE=10
+MONTHLY_BUDGET_USD=10.0
+REDIS_URL=***
+OPENAI_API_KEY=
+LLM_MODEL=gpt-4o-mini
+LOG_LEVEL=INFO
+ALLOWED_ORIGINS=*
+```
+
+Real secrets are configured in Render Environment Variables and are not committed to GitHub.
+
+### Public Test Commands
+
+```powershell
+$BASE="https://day12-cloud-deployment-lab.onrender.com"
+$KEY="chung-day12-secret"
+
+Invoke-RestMethod -Uri "$BASE/health" -Method GET
+
+Invoke-RestMethod -Uri "$BASE/ready" -Method GET
+
+Invoke-RestMethod -Uri "$BASE/ask" `
+  -Method POST `
+  -Headers @{"X-API-Key"=$KEY} `
+  -ContentType "application/json" `
+  -Body '{"user_id":"chung","conversation_id":"render","question":"Hello final Render app"}'
+```
+
+### Verified Results
+
+```text
+GET /health => status: ok, environment: production
+GET /ready => ready: True, redis: ok
+POST /ask without X-API-Key => 401 Unauthorized
+POST /ask with X-API-Key => successful response
+Conversation history => history_turns_used: 1
+Rate limiting => 429 after 10 requests/min/user
+GET /metrics => monthly cost, monthly budget, budget percentage returned
+Production readiness check => 20/20 checks passed
+```
